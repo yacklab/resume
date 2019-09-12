@@ -5,12 +5,36 @@ import { ParticuleNetwork } from "../../components";
 const Container = styled.div``;
 const Section = styled.section`
   padding: 50px;
+  p {
+    text-align: justify;
+  }
+`;
+const Sections = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 1080px;
+  margin: auto;
+  min-height: 64px;
+  a {
+    margin: 10px 10px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
 `;
 
 const index = () => {
   return (
     <Container className="home-bg">
       <ParticuleNetwork />
+      <Sections>
+        <a href="">History</a>
+        <a href="">Bowkr</a>
+        <a href="">Stack</a>
+      </Sections>
       <Section>
         <h3>History</h3>
         <p>
