@@ -5,15 +5,18 @@ import Home from "./views/Home";
 import "./styles/stylesheets/index.scss";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/header";
+import { default as AppContext } from "./providers";
 
 const AppRouter = () => {
   return (
-    <Router>
-      <Header />
-      <Switch>
-        <Route path="/" component={Home} />
-      </Switch>
-    </Router>
+    <AppContext>
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/" component={Home} />
+        </Switch>
+      </Router>
+    </AppContext>
   );
 };
 

@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { MODES, useThemeValue, THEME_ACTIONS } from "../../providers/theme";
+import {
+  useLanguageValue,
+  LANGUAGES,
+  LANGUAGES_ACTIONS
+} from "../../providers/language";
 
 const HeaderDivider = styled.div`
   display: inline;
@@ -55,8 +61,8 @@ const Container = styled.div`
 `;
 
 const Header = () => {
-  const [lang, setLang] = useState("FR");
-  const [darkMode, setDarkMode] = useState(false);
+  const { themeState, dispatchTheme } = useThemeValue();
+  const { languageState, dispatchLanguage } = useLanguageValue();
   return (
     <Container>
       <h5>Morgan Tomasini</h5>
@@ -68,21 +74,28 @@ const Header = () => {
       <div>
         <span
           style={{ margin: "0 2px" }}
-          className={lang === "FR" ? "selected" : ""}
-          onClick={() => setLang("FR")}
+          className={languageState.language === LANGUAGES.FR ? "selected" : ""}
+          onClick={() =>
+            dispatchLanguage({ type: LANGUAGES_ACTIONS.SET_FRENCH })
+          }
         >
           <img src="/fr.svg" height={12} alt="" />
         </span>
         <span
-          className={lang === "EN" ? "selected" : ""}
-          onClick={() => setLang("EN")}
+          className={languageState.language === LANGUAGES.EN ? "selected" : ""}
+          onClick={() =>
+            dispatchLanguage({ type: LANGUAGES_ACTIONS.SET_ENGLISH })
+          }
         >
           <img src="/en.svg" height={12} alt="" />
         </span>
         <HeaderDivider />
-        <span style={{ fontSize: 12 }} onClick={() => setDarkMode(!darkMode)}>
+        <span
+          style={{ fontSize: 12 }}
+          onClick={() => dispatchTheme({ type: THEME_ACTIONS.SWITCH_MODE })}
+        >
           {" "}
-          {darkMode ? "☀️" : "🌙"}
+          {themeState.themeMode === MODES.DARK ? "☀️" : "🌙"}
         </span>
       </div>
     </Container>
@@ -90,3 +103,6 @@ const Header = () => {
 };
 
 export default Header;
+{
+  /* */
+}

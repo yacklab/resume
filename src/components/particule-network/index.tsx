@@ -1,26 +1,23 @@
 import React, { useRef, useEffect, useState } from "react";
 import { vh } from "../../helpers";
 import styled from "styled-components";
+import { useThemeValue, MODES } from "../../providers/theme";
+import { Heading } from "../../styled/text";
 
-const Moto = styled.h2`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, 50%, 0);
-  font-size: 2.3rem;
-  color: white;
-`;
+type CanvasContainerProps = {
+  dark: boolean;
+};
 const CanvasContainer = styled.div`
   position: relative;
-  background-color: #ff9a8b;
-  background-image: linear-gradient(
-    90deg,
-    #ff9a8b 0%,
-    #ff6a88 55%,
-    #ff99ac 100%
-  );
+  background-color: ${(p: CanvasContainerProps) =>
+    p.dark ? "#08AEEA" : "#ff9a8b"};
+  background-image: ${(p: CanvasContainerProps) =>
+    p.dark
+      ? "linear-gradient(315deg, #08AEEA 0%, #2AF598 100%)"
+      : "linear-gradient(90deg, #ff9a8b 0%, #ff6a88 55%, #ff99ac 100%)"};
 
   background-size: 400% 400%;
+  transition: all 900ms ease;
   animation: MovingBG 15s ease infinite alternate;
   clip-path: polygon(0 0, 100% 0%, 100% 88%, 0% 100%);
   z-index: 0;
@@ -200,14 +197,27 @@ const ParticuleNetworkComponent = () => {
       setHeight(vh(70));
     });
   });
+  const { themeState } = useThemeValue();
+
   return (
     <div>
-      <CanvasContainer>
+      <CanvasContainer dark={themeState.themeMode === MODES.DARK}>
         <canvas ref={canvaRef} width={width} height={height} />
         <Avatar>
           <img src="/avatar.svg" alt="" />
         </Avatar>
-        <Moto>Web Developper (Full Stack)</Moto>
+        <Heading
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate3d(-50%, 50%, 0)"
+          }}
+          Element={"h2"}
+          headType={2}
+        >
+          Web Developper (Full Stack)
+        </Heading>
       </CanvasContainer>
     </div>
   );
