@@ -1,10 +1,44 @@
 import React, { createContext, useReducer, useContext, Dispatch } from "react";
+import { createMuiTheme, Theme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+
+const lightTtheme: Theme = createMuiTheme({
+  overrides: {
+    MuiButton: {
+      text: {
+        background: "white",
+        borderRadius: 3,
+        border: 0,
+        color: "black",
+        height: 48,
+        padding: "0 30px",
+        boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)"
+      }
+    }
+  }
+});
+
+const darkTheme: Theme = createMuiTheme({
+  overrides: {
+    MuiButton: {
+      text: {
+        background: "black",
+        borderRadius: 3,
+        border: 0,
+        color: "white",
+        height: 48,
+        padding: "0 30px",
+        boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)"
+      }
+    }
+  }
+});
 
 interface ThemeState {
-  themeMode: string;
+  themeName: string;
 }
 
-export const MODES = {
+export const THEME_NAMES = {
   DARK: "DARK",
   LIGHT: "LIGHT"
 };
@@ -24,15 +58,18 @@ const reducer = (state: ThemeState, action: any): ThemeState => {
   switch (action.type) {
     case THEME_ACTIONS.SWITCH_MODE:
       return {
-        themeMode: state.themeMode === MODES.DARK ? MODES.LIGHT : MODES.DARK
+        themeName:
+          state.themeName === THEME_NAMES.DARK
+            ? THEME_NAMES.LIGHT
+            : THEME_NAMES.DARK
       };
     case THEME_ACTIONS.SET_LIGHT_MODE:
       return {
-        themeMode: MODES.LIGHT
+        themeName: THEME_NAMES.LIGHT
       };
     case THEME_ACTIONS.SET_DARK_MODE:
       return {
-        themeMode: MODES.DARK
+        themeName: THEME_NAMES.DARK
       };
     default:
       return state;
@@ -41,11 +78,17 @@ const reducer = (state: ThemeState, action: any): ThemeState => {
 
 export const AppThemeProvider: React.FunctionComponent = ({ children }) => {
   const [themeState, dispatchTheme] = useReducer(reducer, {
-    themeMode: MODES.DARK
+    themeName: THEME_NAMES.DARK
   });
   return (
     <ThemeContext.Provider value={{ themeState, dispatchTheme }}>
-      {children}
+      <ThemeProvider
+        theme={
+          themeState.themeName === THEME_NAMES.DARK ? darkTheme : lightTtheme
+        }
+      >
+        {children}
+      </ThemeProvider>
     </ThemeContext.Provider>
   );
 };

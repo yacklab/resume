@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 // import { useThemeValue, MODES } from "../../providers/theme";
-import { Heading } from "../../styled/text";
 import ParticleCanvas from "./canvas";
+import { useThemeValue, THEME_NAMES } from "../../providers/theme";
 
 type CanvasContainerProps = {
   dark: boolean;
@@ -50,6 +50,7 @@ const Avatar = styled.div`
 `;
 
 const ParticuleNetworkComponent: React.FunctionComponent = () => {
+  const { themeState } = useThemeValue();
   return (
     <ParticleCanvas
       viewHeight={90}
@@ -59,25 +60,17 @@ const ParticuleNetworkComponent: React.FunctionComponent = () => {
         globalAlpha: 0.6,
         densityDivider: 4000
       }}
-      renderBG={(c: React.ReactNode) => {
-        return <CanvasContainer dark={false}>{c}</CanvasContainer>;
+      renderProps={{
+        dark: themeState.themeName === THEME_NAMES.DARK
+      }}
+      renderBG={(c: React.ReactNode, renderProps: { dark: boolean }) => {
+        return <CanvasContainer dark={renderProps.dark}>{c}</CanvasContainer>;
       }}
     >
       <Avatar>
         <img src="/avatar.svg" alt="" />
       </Avatar>
-      <Heading
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate3d(-50%, 50%, 0)"
-        }}
-        Element={"h2"}
-        headType={2}
-      >
-        Web Developper (Full Stack)
-      </Heading>
+      <h4>Web Developper (Full Stack)</h4>
     </ParticleCanvas>
   );
 };

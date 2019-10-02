@@ -2,7 +2,8 @@ export interface ParticleNetworkProps {
   viewHeight?: number;
   particleOptions?: ComponentParticleOptions;
   divStyle?: React.CSSProperties;
-  renderBG?(props: React.ReactNode): React.ReactElement;
+  renderBG?(props: React.ReactNode, renderProps: any): React.ReactElement;
+  renderProps?: any;
   children?: React.ReactNode;
 }
 

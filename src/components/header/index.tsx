@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { MODES, useThemeValue, THEME_ACTIONS } from "../../providers/theme";
 import {
   useLanguageValue,
   LANGUAGES,
   LANGUAGES_ACTIONS
 } from "../../providers/language";
+import {
+  useThemeValue,
+  THEME_ACTIONS,
+  THEME_NAMES
+} from "../../providers/theme";
 
 const HeaderDivider = styled.div`
   display: inline;
@@ -95,7 +99,7 @@ const Header = () => {
           onClick={() => dispatchTheme({ type: THEME_ACTIONS.SWITCH_MODE })}
         >
           {" "}
-          {themeState.themeMode === MODES.DARK ? "☀️" : "🌙"}
+          {themeState.themeName === THEME_NAMES.DARK ? "☀️" : "🌙"}
         </span>
       </div>
     </Container>

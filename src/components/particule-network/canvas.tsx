@@ -3,6 +3,8 @@ import isEqual from "lodash/isEqual";
 import { ParticleNetworkProps, Particle, ParticleOptions } from "./types";
 import { vh } from "../../helpers";
 
+// TODO: Find a less convoluted and more performant way to render background
+
 const CreateParticle = function(
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
@@ -144,7 +146,8 @@ const ParticleNetwork: React.FunctionComponent<ParticleNetworkProps> = ({
     densityDivider: 20000
   },
   divStyle,
-  renderBG
+  renderBG,
+  renderProps
 }) => {
   const canvaRef = useRef<HTMLCanvasElement>(null);
   const [width, setWidth] = useState<number>(window.innerWidth);
@@ -164,7 +167,7 @@ const ParticleNetwork: React.FunctionComponent<ParticleNetworkProps> = ({
     if (!renderBG) {
       return <div style={{ ...divStyle }}>{children}</div>;
     } else {
-      return renderBG(children);
+      return renderBG(children, renderProps);
     }
   };
   return (
