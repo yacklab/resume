@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MODES, useThemeValue, THEME_ACTIONS } from "../../providers/theme";
@@ -26,13 +26,13 @@ const Container = styled.div`
   align-items: center;
   color: black;
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   span.selected {
     border-bottom: 1px solid black;
     text-align: center;
   }
-  @media screen and (max-width: 600px) {
-    font-size: 0.8rem;
+  @media screen and (max-width: 768px) {
+    font-size: 1.1rem;
   }
   h5 {
     @media screen and (max-width: 600px) {
@@ -103,6 +103,3 @@ const Header = () => {
 };
 
 export default Header;
-{
-  /* */
-}

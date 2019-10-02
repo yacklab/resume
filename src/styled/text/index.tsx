@@ -8,7 +8,7 @@ interface TextProp {
   style?: React.CSSProperties;
   headType?: HeadType;
 }
-const FontSizes = ["2.7rem", "2.3rem", "1.8rem"];
+const FontSizes = ["2.7rem", "2.6rem", "1.8rem"];
 export const Heading: React.FunctionComponent<TextProp> = ({
   Element = "h3",
   headType = 3,
