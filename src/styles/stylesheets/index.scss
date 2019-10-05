@@ -1,25 +1,25 @@
-@import "reset";
+// @import "reset";
 
-@import url("https://fonts.googleapis.com/css?family=Nunito&display=swap");
+// @import url("https://fonts.googleapis.com/css?family=Nunito&display=swap");
 
-body,
-html {
-  font-family: "Nunito", sans-serif;
-  scroll-behavior: smooth;
-}
-p {
-  font-size: 1.3rem;
-  letter-spacing: 0.1rem;
-  line-height: 1.4rem;
-  @media screen and (max-width: 768px) {
-    font-size: 1.1rem;
-    letter-spacing: 0.1rem;
-    line-height: 1.3rem;
-  }
-}
-h3 {
-  font-size: 1.4rem;
-  @media screen and (max-width: 768px) {
-    font-size: 1.3rem;
-  }
-}
+// body,
+// html {
+//   font-family: "Nunito", sans-serif;
+//   scroll-behavior: smooth;
+// }
+// p {
+//   font-size: 1.3rem;
+//   letter-spacing: 0.1rem;
+//   line-height: 1.4rem;
+//   @media screen and (max-width: 768px) {
+//     font-size: 1.1rem;
+//     letter-spacing: 0.1rem;
+//     line-height: 1.3rem;
+//   }
+// }
+// h3 {
+//   font-size: 1.4rem;
+//   @media screen and (max-width: 768px) {
+//     font-size: 1.3rem;
+//   }
+// }

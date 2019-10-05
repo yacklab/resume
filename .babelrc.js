@@ -12,6 +12,16 @@ const plugins = [
   [
     "babel-plugin-import",
     {
+      libraryName: "@material-ui/styles",
+      // Use "'libraryDirectory': ''," if your bundler does not support ES modules
+      libraryDirectory: "esm",
+      camel2DashComponentName: false
+    },
+    "styles"
+  ],
+  [
+    "babel-plugin-import",
+    {
       libraryName: "@material-ui/icons",
       // Use "'libraryDirectory': ''," if your bundler does not support ES modules
       libraryDirectory: "esm",
