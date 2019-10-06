@@ -20,7 +20,6 @@ const CanvasContainer = styled.div`
   transition: all 900ms ease;
   animation: MovingBG 15s ease infinite alternate;
   clip-path: polygon(0 0, 100% 0%, 100% 88%, 0% 100%);
-  z-index: 0;
   @keyframes MovingBG {
     0% {
       background-position: 0% 50%;

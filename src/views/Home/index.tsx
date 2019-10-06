@@ -4,7 +4,7 @@ import { ParticuleNetwork, StickyHeader } from "../../components";
 import { Button } from "@material-ui/core";
 import { scrollToRef, vh } from "../../helpers";
 
-const Home: React.FunctionComponent = () => {
+export const HomeView: React.FunctionComponent = () => {
   const refs = [
     useRef<HTMLElement>(null),
     useRef<HTMLElement>(null),
@@ -13,7 +13,7 @@ const Home: React.FunctionComponent = () => {
     useRef<HTMLElement>(null),
     useRef<HTMLElement>(null)
   ];
-  // const sectionIndex = useScrollSpy(refs, {
+  // const activeSectionIndex = useScrollSpy(refs, {
   //   offset: -128
   // });
 
@@ -22,7 +22,7 @@ const Home: React.FunctionComponent = () => {
       <ParticuleNetwork />
       <StickyHeader offset={64}>
         <Button
-          // type={sectionIndex === 0 ? "primary" : "link"}
+          // type={activeSectionIndex === 0 ? "primary" : "link"}
           onClick={() => {
             scrollToRef(refs[0]);
           }}
@@ -30,9 +30,7 @@ const Home: React.FunctionComponent = () => {
           History
         </Button>
       </StickyHeader>
-      <div style={{ height: vh(200) }}>he</div>
+      <div style={{ height: vh(500) }}>he</div>
     </div>
   );
 };
-
-export default Home;

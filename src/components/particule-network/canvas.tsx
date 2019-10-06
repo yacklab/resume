@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
-import isEqual from "lodash/isEqual";
 import { ParticleNetworkProps, Particle, ParticleOptions } from "./types";
 import { vh } from "../../helpers";
+import { isEqual } from "lodash";
 
 // TODO: Find a less convoluted and more performant way to render background
+let animationFrame: any;
 
 const CreateParticle = function(
   canvas: HTMLCanvasElement,
@@ -86,7 +87,10 @@ const CreateParticuleNetwork = function(
         }
       }
     }
-    requestAnimationFrame(update);
+    if (animationFrame) {
+      cancelAnimationFrame(animationFrame);
+    }
+    animationFrame = requestAnimationFrame(update);
   };
   const init = function() {
     if (ctx) {
@@ -127,7 +131,10 @@ const CreateParticuleNetwork = function(
           ctx.stroke();
         }
       }
-      requestAnimationFrame(update);
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+      animationFrame = requestAnimationFrame(update);
     }
   };
 
@@ -135,6 +142,44 @@ const CreateParticuleNetwork = function(
     init
   };
 };
+
+const CanvaComponent: React.FunctionComponent<ParticleNetworkProps> = ({
+  viewHeight = 100,
+  particleOptions = {
+    netColor: "#FFF",
+    dotColor: "#FFF",
+    globalAlpha: 0.7,
+    densityDivider: 20000
+  }
+}) => {
+  const canvaRef = useRef<HTMLCanvasElement>(null);
+  const [height, setHeight] = useState<number>(vh(viewHeight));
+  const [width, setWidth] = useState<number>(window.innerWidth);
+  useEffect(() => {
+    const canvas = canvaRef.current;
+    if (canvas) {
+      CreateParticuleNetwork(canvas, particleOptions as ParticleOptions).init();
+    }
+    const handleResize = function() {
+      setWidth(window.innerWidth);
+      setHeight(vh(viewHeight));
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
+  return <canvas ref={canvaRef} width={width} height={height} />;
+};
+
+const MemoCanvaComponent = React.memo(
+  CanvaComponent,
+  (
+    { children, renderBG, ...rest },
+    { children: newChildren, renderBG: newRenderBG, ...newRest }
+  ) => isEqual(rest, newRest)
+);
 
 const ParticleNetwork: React.FunctionComponent<ParticleNetworkProps> = ({
   children,
@@ -149,39 +194,19 @@ const ParticleNetwork: React.FunctionComponent<ParticleNetworkProps> = ({
   renderBG,
   renderProps
 }) => {
-  const canvaRef = useRef<HTMLCanvasElement>(null);
-  const [width, setWidth] = useState<number>(window.innerWidth);
-  const [height, setHeight] = useState<number>(vh(viewHeight));
-
-  useEffect(() => {
-    const canvas = canvaRef.current;
-    if (canvas) {
-      CreateParticuleNetwork(canvas, particleOptions as ParticleOptions).init();
-    }
-    window.addEventListener("resize", function() {
-      setWidth(window.innerWidth);
-      setHeight(vh(viewHeight));
-    });
-  });
-  const Background: React.FunctionComponent = ({ children }) => {
+  const Background: React.FunctionComponent = ({ children: c }) => {
     if (!renderBG) {
-      return <div style={{ ...divStyle }}>{children}</div>;
+      return <div style={{ ...divStyle }}>{c}</div>;
     } else {
-      return renderBG(children, renderProps);
+      return renderBG(c, renderProps);
     }
   };
   return (
     <Background>
-      <canvas ref={canvaRef} width={width} height={height} />
+      <MemoCanvaComponent {...{ viewHeight, particleOptions }} />
       {children}
     </Background>
   );
 };
 
-export default React.memo(
-  ParticleNetwork,
-  (
-    { children, renderBG, ...rest },
-    { children: newChildren, renderBG: newRenderBG, ...newRest }
-  ) => isEqual(rest, newRest)
-);
+export default ParticleNetwork;

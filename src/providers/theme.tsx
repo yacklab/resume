@@ -16,19 +16,6 @@ const lightTheme: Theme = responsiveFontSizes(
       background: {
         default: "#f5f8fa"
       }
-    },
-    overrides: {
-      MuiButton: {
-        text: {
-          background: "white",
-          borderRadius: 3,
-          border: 0,
-          color: "black",
-          height: 48,
-          padding: "0 30px",
-          boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)"
-        }
-      }
     }
   })
 );
@@ -42,19 +29,6 @@ const darkTheme: Theme = responsiveFontSizes(
       },
       background: {
         default: "#30404d"
-      }
-    },
-    overrides: {
-      MuiButton: {
-        text: {
-          background: "black",
-          borderRadius: 3,
-          border: 0,
-          color: "white",
-          height: 48,
-          padding: "0 30px",
-          boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)"
-        }
       }
     }
   })

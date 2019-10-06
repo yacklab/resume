@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import Link from "@material-ui/core/Link";
 import {
   useLanguageValue,
   LANGUAGES,
@@ -12,18 +12,23 @@ import {
   THEME_NAMES
 } from "../../providers/theme";
 import { Divider } from "@material-ui/core";
+import { RouterPaths } from "../../router";
+import { RouterLink } from "../router-link";
 
 const Container = styled.div<{ bgColor: string }>`
   width: 100%;
-  z-index: 9;
   height: 64px;
+  z-index: 9;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  position: fixed;
+  position: sticky;
+  top: 0;
+  left: 0;
   background-color: ${props => props.bgColor};
   transition: all 200ms ease;
+  transform: translateY(0);
 `;
 
 const Header = () => {
@@ -33,9 +38,15 @@ const Header = () => {
     <Container bgColor={themeState.theme.palette.background.default}>
       <h5>Morgan Tomasini</h5>
       <div>
-        <Link to="/">Presentation</Link>
-        <Link to="/">Resume</Link>
-        <Link to="/">Projects</Link>
+        <Link to="/" component={RouterLink}>
+          Presentation
+        </Link>
+        <Link to="/" component={RouterLink}>
+          Resume
+        </Link>
+        <Link to={RouterPaths.projects} component={RouterLink}>
+          Projects
+        </Link>
       </div>
       <div>
         <span
