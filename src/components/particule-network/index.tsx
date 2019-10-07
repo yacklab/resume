@@ -3,6 +3,7 @@ import styled from "styled-components";
 // import { useThemeValue, MODES } from "../../providers/theme";
 import ParticleCanvas from "./canvas";
 import { useThemeValue, THEME_NAMES } from "../../providers/theme";
+import { Typography } from "@material-ui/core";
 
 type CanvasContainerProps = {
   dark: boolean;
@@ -40,19 +41,33 @@ const Avatar = styled.div`
   transform: translate3d(-50%, 80%, 0);
   height: 200px;
   width: 200px;
+  @media screen and (max-width: 600px) {
+    height: 150px;
+    width: 150px;
+  }
   img {
     height: 190px;
     width: 190px;
     border-radius: 50%;
     box-shadow: 3px 3px 21px -5px rgba(115, 115, 115, 1);
+    @media screen and (max-width: 600px) {
+      height: 140px;
+      width: 140px;
+    }
   }
+`;
+const Title = styled(props => <Typography {...props} />)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, 0%, 0);
 `;
 
 const ParticuleNetworkComponent: React.FunctionComponent = () => {
   const { themeState } = useThemeValue();
   return (
     <ParticleCanvas
-      viewHeight={90}
+      viewHeight={70}
       particleOptions={{
         netColor: "#FFF",
         dotColor: "#FFF",
@@ -69,7 +84,9 @@ const ParticuleNetworkComponent: React.FunctionComponent = () => {
       <Avatar>
         <img src="/avatar.svg" alt="" />
       </Avatar>
-      <h4>Web Developper (Full Stack)</h4>
+      <Title variant="h2" component="h2">
+        Web Developper <br /> (Full Stack)
+      </Title>
     </ParticleCanvas>
   );
 };

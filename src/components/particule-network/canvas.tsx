@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { ParticleNetworkProps, Particle, ParticleOptions } from "./types";
 import { vh } from "../../helpers";
-import { isEqual } from "lodash";
 
 // TODO: Find a less convoluted and more performant way to render background
 let animationFrame: any;
@@ -143,18 +142,31 @@ const CreateParticuleNetwork = function(
   };
 };
 
-const CanvaComponent: React.FunctionComponent<ParticleNetworkProps> = ({
+const ParticleNetwork: React.FunctionComponent<ParticleNetworkProps> = ({
+  children,
   viewHeight = 100,
   particleOptions = {
     netColor: "#FFF",
     dotColor: "#FFF",
     globalAlpha: 0.7,
     densityDivider: 20000
-  }
+  },
+  divStyle,
+  renderBG,
+  renderProps
 }) => {
   const canvaRef = useRef<HTMLCanvasElement>(null);
   const [height, setHeight] = useState<number>(vh(viewHeight));
   const [width, setWidth] = useState<number>(window.innerWidth);
+
+  const Background: React.FunctionComponent = ({ children: c }) => {
+    if (!renderBG) {
+      return <div style={{ ...divStyle }}>{c}</div>;
+    } else {
+      return renderBG(c, renderProps);
+    }
+  };
+
   useEffect(() => {
     const canvas = canvaRef.current;
     if (canvas) {
@@ -170,43 +182,19 @@ const CanvaComponent: React.FunctionComponent<ParticleNetworkProps> = ({
     };
   });
 
-  return <canvas ref={canvaRef} width={width} height={height} />;
-};
-
-const MemoCanvaComponent = React.memo(
-  CanvaComponent,
-  (
-    { children, renderBG, ...rest },
-    { children: newChildren, renderBG: newRenderBG, ...newRest }
-  ) => isEqual(rest, newRest)
-);
-
-const ParticleNetwork: React.FunctionComponent<ParticleNetworkProps> = ({
-  children,
-  viewHeight = 100,
-  particleOptions = {
-    netColor: "#FFF",
-    dotColor: "#FFF",
-    globalAlpha: 0.7,
-    densityDivider: 20000
-  },
-  divStyle,
-  renderBG,
-  renderProps
-}) => {
-  const Background: React.FunctionComponent = ({ children: c }) => {
-    if (!renderBG) {
-      return <div style={{ ...divStyle }}>{c}</div>;
-    } else {
-      return renderBG(c, renderProps);
-    }
-  };
   return (
     <Background>
-      <MemoCanvaComponent {...{ viewHeight, particleOptions }} />
+      <canvas ref={canvaRef} width={width} height={height} />
       {children}
     </Background>
   );
 };
 
 export default ParticleNetwork;
+// export default React.memo(
+//   ParticleNetwork,
+//   (
+//     { children, renderBG, ...rest },
+//     { children: newChildren, renderBG: newRenderBG, ...newRest }
+//   ) => isEqual(rest, newRest)
+// );

@@ -11,9 +11,12 @@ import {
   THEME_ACTIONS,
   THEME_NAMES
 } from "../../providers/theme";
-import { Divider } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { RouterPaths } from "../../router";
 import { RouterLink } from "../router-link";
+import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import Brightness3Icon from "@material-ui/icons/Brightness3";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
 const Container = styled.div<{ bgColor: string }>`
   width: 100%;
@@ -31,52 +34,106 @@ const Container = styled.div<{ bgColor: string }>`
   transform: translateY(0);
 `;
 
-const Header = () => {
+const Actions = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100px;
+`;
+
+const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
+  location
+}) => {
   const { themeState, dispatchTheme } = useThemeValue();
   const { languageState, dispatchLanguage } = useLanguageValue();
   return (
     <Container bgColor={themeState.theme.palette.background.default}>
-      <h5>Morgan Tomasini</h5>
+      <Typography variant="subtitle2" component="h1">
+        Morgan Tomasini
+      </Typography>
       <div>
-        <Link to="/" component={RouterLink}>
-          Presentation
-        </Link>
-        <Link to="/" component={RouterLink}>
-          Resume
-        </Link>
-        <Link to={RouterPaths.projects} component={RouterLink}>
-          Projects
-        </Link>
+        <Box component="span" marginX={0.5}>
+          <Link
+            underline="hover"
+            color={
+              location.pathname === RouterPaths.home
+                ? "inherit"
+                : "textSecondary"
+            }
+            to={RouterPaths.home}
+            component={RouterLink}
+          >
+            Presentation
+          </Link>
+        </Box>
+        <Box component="span" marginX={0.5}>
+          <Link
+            underline="hover"
+            color={
+              location.pathname === RouterPaths.resume
+                ? "inherit"
+                : "textSecondary"
+            }
+            to={RouterPaths.resume}
+            component={RouterLink}
+          >
+            Resume
+          </Link>
+        </Box>
+        <Box component="span" marginX={0.5}>
+          <Link
+            underline="hover"
+            color={
+              location.pathname === RouterPaths.projects
+                ? "inherit"
+                : "textSecondary"
+            }
+            to={RouterPaths.projects}
+            component={RouterLink}
+          >
+            Projects
+          </Link>
+        </Box>
       </div>
-      <div>
-        <span
-          style={{ margin: "0 2px" }}
-          className={languageState.language === LANGUAGES.FR ? "selected" : ""}
-          onClick={() =>
-            dispatchLanguage({ type: LANGUAGES_ACTIONS.SET_FRENCH })
-          }
-        >
-          <img src="/fr.svg" height={12} alt="" />
-        </span>
-        <span
-          className={languageState.language === LANGUAGES.EN ? "selected" : ""}
-          onClick={() =>
-            dispatchLanguage({ type: LANGUAGES_ACTIONS.SET_ENGLISH })
-          }
-        >
-          <img src="/en.svg" height={12} alt="" />
-        </span>
-        <Divider orientation="vertical" />
+      <Actions>
+        <div>
+          <span
+            style={{ margin: "0 10px" }}
+            className={
+              languageState.language === LANGUAGES.FR ? "selected" : ""
+            }
+            onClick={() =>
+              dispatchLanguage({ type: LANGUAGES_ACTIONS.SET_FRENCH })
+            }
+          >
+            <img src="/fr.svg" height={12} alt="" />
+          </span>
+          <span
+            className={
+              languageState.language === LANGUAGES.EN ? "selected" : ""
+            }
+            onClick={() =>
+              dispatchLanguage({ type: LANGUAGES_ACTIONS.SET_ENGLISH })
+            }
+          >
+            <img src="/en.svg" height={12} alt="" />
+          </span>
+        </div>
         <span
           style={{ fontSize: 12 }}
           onClick={() => dispatchTheme({ type: THEME_ACTIONS.SWITCH_MODE })}
         >
           {" "}
-          {themeState.themeName === THEME_NAMES.DARK ? "☀️" : "🌙"}
+          {themeState.themeName === THEME_NAMES.DARK ? (
+            <WbSunnyIcon />
+          ) : (
+            <Brightness3Icon />
+          )}
         </span>
-      </div>
+      </Actions>
     </Container>
   );
 };
 
-export default Header;
+export default withRouter(Header);

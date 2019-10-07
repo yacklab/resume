@@ -1,38 +1,6 @@
 import React, { createContext, useReducer, useContext, Dispatch } from "react";
-import {
-  createMuiTheme,
-  Theme,
-  responsiveFontSizes,
-  MuiThemeProvider
-} from "@material-ui/core/styles";
-
-const lightTheme: Theme = responsiveFontSizes(
-  createMuiTheme({
-    palette: {
-      type: "light",
-      text: {
-        primary: "#30404d"
-      },
-      background: {
-        default: "#f5f8fa"
-      }
-    }
-  })
-);
-
-const darkTheme: Theme = responsiveFontSizes(
-  createMuiTheme({
-    palette: {
-      type: "dark",
-      text: {
-        primary: "#f5f8fa"
-      },
-      background: {
-        default: "#30404d"
-      }
-    }
-  })
-);
+import { Theme, MuiThemeProvider } from "@material-ui/core/styles";
+import { DarkTheme, LightTheme } from "../styles/themes";
 
 interface ThemeState {
   themeName: string;
@@ -54,7 +22,6 @@ interface ThemeContext {
   dispatchTheme: Dispatch<any>;
 }
 export const ThemeContext = createContext({} as ThemeContext);
-
 const reducer = (state: ThemeState, action: any): ThemeState => {
   switch (action.type) {
     case THEME_ACTIONS.SWITCH_MODE:
@@ -64,17 +31,17 @@ const reducer = (state: ThemeState, action: any): ThemeState => {
           : THEME_NAMES.DARK;
       return {
         themeName,
-        theme: themeName === THEME_NAMES.DARK ? darkTheme : lightTheme
+        theme: themeName === THEME_NAMES.DARK ? DarkTheme : LightTheme
       };
     case THEME_ACTIONS.SET_LIGHT_MODE:
       return {
         themeName: THEME_NAMES.LIGHT,
-        theme: lightTheme
+        theme: LightTheme
       };
     case THEME_ACTIONS.SET_DARK_MODE:
       return {
         themeName: THEME_NAMES.DARK,
-        theme: darkTheme
+        theme: DarkTheme
       };
     default:
       return state;
@@ -84,13 +51,13 @@ const reducer = (state: ThemeState, action: any): ThemeState => {
 export const AppThemeProvider: React.FunctionComponent = ({ children }) => {
   const [themeState, dispatchTheme] = useReducer(reducer, {
     themeName: THEME_NAMES.DARK,
-    theme: darkTheme
+    theme: DarkTheme
   });
   return (
     <ThemeContext.Provider value={{ themeState, dispatchTheme }}>
       <MuiThemeProvider
         theme={
-          themeState.themeName === THEME_NAMES.DARK ? darkTheme : lightTheme
+          themeState.themeName === THEME_NAMES.DARK ? DarkTheme : LightTheme
         }
       >
         {children}

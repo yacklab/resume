@@ -6,10 +6,10 @@ import { default as AppContext } from "./providers";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { AppRouter } from "./router";
 import { StylesProvider } from "@material-ui/styles";
-
+import "typeface-roboto";
 const App = () => {
   return (
-    <StylesProvider injectFirst>
+    <StylesProvider>
       <AppContext>
         <CssBaseline />
         <AppRouter />
