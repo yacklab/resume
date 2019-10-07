@@ -1,13 +1,11 @@
 import React, { useRef } from "react";
 import { ParticuleNetwork, StickyHeader } from "../../components";
 // import { useScrollSpy } from "../../hooks";
-import { Button, Typography } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
-import { scrollToRef, vh } from "../../helpers";
-import { useTheme } from "@material-ui/styles";
+import { scrollToRef } from "../../helpers";
 
 export const HomeView: React.FunctionComponent = () => {
-  const theme = useTheme();
   const refs = [
     useRef<HTMLElement>(null),
     useRef<HTMLElement>(null),

@@ -17,6 +17,8 @@ import { RouterLink } from "../router-link";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import Brightness3Icon from "@material-ui/icons/Brightness3";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { FrenchFlag, EnglishFlag } from "../flags";
 
 const Container = styled.div<{ bgColor: string }>`
   width: 100%;
@@ -47,6 +49,7 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
 }) => {
   const { themeState, dispatchTheme } = useThemeValue();
   const { languageState, dispatchLanguage } = useLanguageValue();
+  const { t } = useTranslation();
   return (
     <Container bgColor={themeState.theme.palette.background.default}>
       <Typography variant="subtitle2" component="h1">
@@ -64,7 +67,7 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
             to={RouterPaths.home}
             component={RouterLink}
           >
-            Presentation
+            {t("NAVBAR.HOME")}
           </Link>
         </Box>
         <Box component="span" marginX={0.5}>
@@ -78,7 +81,7 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
             to={RouterPaths.resume}
             component={RouterLink}
           >
-            Resume
+            {t("NAVBAR.RESUME")}
           </Link>
         </Box>
         <Box component="span" marginX={0.5}>
@@ -92,32 +95,27 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
             to={RouterPaths.projects}
             component={RouterLink}
           >
-            Projects
+            {t("NAVBAR.PROJECTS")}
           </Link>
         </Box>
       </div>
       <Actions>
         <div>
           <span
-            style={{ margin: "0 10px" }}
-            className={
-              languageState.language === LANGUAGES.FR ? "selected" : ""
-            }
+            style={{ margin: "0 5px", cursor: "pointer" }}
             onClick={() =>
               dispatchLanguage({ type: LANGUAGES_ACTIONS.SET_FRENCH })
             }
           >
-            <img src="/fr.svg" height={12} alt="" />
+            <FrenchFlag active={languageState.language === LANGUAGES.FR} />
           </span>
           <span
-            className={
-              languageState.language === LANGUAGES.EN ? "selected" : ""
-            }
+            style={{ margin: "0 5px", cursor: "pointer" }}
             onClick={() =>
               dispatchLanguage({ type: LANGUAGES_ACTIONS.SET_ENGLISH })
             }
           >
-            <img src="/en.svg" height={12} alt="" />
+            <EnglishFlag active={languageState.language === LANGUAGES.EN} />
           </span>
         </div>
         <span
