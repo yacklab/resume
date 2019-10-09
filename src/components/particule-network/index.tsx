@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ParticleCanvas from "./canvas";
 import { useThemeValue, THEME_NAMES } from "../../providers/theme";
 import { Typography } from "@material-ui/core";
+import { LongTypedName } from "../typed-name";
 
 type CanvasContainerProps = {
   dark: boolean;
@@ -56,9 +57,15 @@ const Avatar = styled.div`
     }
   }
 `;
-const Title = styled(props => <Typography {...props} />)`
+// const Title = styled(props => <Typography {...props} />)`
+//   position: absolute;
+//   top: calc(50% + 40px);
+//   left: 50%;
+//   transform: translate3d(-50%, 0%, 0);
+// `;
+const Title = styled.div`
   position: absolute;
-  top: 50%;
+  top: calc(50% + 40px);
   left: 50%;
   transform: translate3d(-50%, 0%, 0);
 `;
@@ -84,9 +91,13 @@ const ParticuleNetworkComponent: React.FunctionComponent = () => {
       <Avatar>
         <img src="/avatar.svg" alt="" />
       </Avatar>
-      <Title variant="h2" component="h2">
-        Web Developper <br /> (Full Stack)
+      <Title>
+        <LongTypedName />
       </Title>
+      {/* TODO: find title */}
+      {/* <Title variant="h2" component="h2">
+        Web Developper <br /> (Full Stack)
+      </Title> */}
     </ParticleCanvas>
   );
 };

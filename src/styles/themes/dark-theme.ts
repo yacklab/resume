@@ -8,10 +8,12 @@ import { CommonTheme, responsiveFontSizeOptions } from "./common-theme";
 const darkTheme: Theme = createMuiTheme({
   palette: {
     type: "dark",
+
     text: {
       primary: "#f5f8fa"
     },
     background: {
+      paper: "#293742",
       default: "#30404d"
     }
   },

@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
 import { ParticuleNetwork, StickyHeader } from "../../components";
 // import { useScrollSpy } from "../../hooks";
-import { Button } from "@material-ui/core";
+import { Button, Typography, Container } from "@material-ui/core";
 
 import { scrollToRef } from "../../helpers";
+import { useScrollSpy } from "../../hooks";
 
 export const HomeView: React.FunctionComponent = () => {
   const refs = [
@@ -14,83 +15,243 @@ export const HomeView: React.FunctionComponent = () => {
     useRef<HTMLElement>(null),
     useRef<HTMLElement>(null)
   ];
-  // const activeSectionIndex = useScrollSpy(refs, {
-  //   offset: -128
-  // });
+  const activeSectionIndex = useScrollSpy(refs, {
+    offset: -210
+  });
 
   return (
     <div className="home-bg">
       <ParticuleNetwork />
       <StickyHeader offset={64}>
         <Button
-          // type={activeSectionIndex === 0 ? "primary" : "link"}
+          color={activeSectionIndex === 0 ? "secondary" : "default"}
           onClick={() => {
-            scrollToRef(refs[0]);
+            scrollToRef(refs[0], 210);
           }}
         >
-          History
+          Profile
+        </Button>
+        <Button
+          color={activeSectionIndex === 1 ? "secondary" : "default"}
+          onClick={() => {
+            scrollToRef(refs[1], 200);
+          }}
+        >
+          Experiences
+        </Button>
+        <Button
+          color={activeSectionIndex === 2 ? "secondary" : "default"}
+          onClick={() => {
+            scrollToRef(refs[2], 200);
+          }}
+        >
+          Stack
         </Button>
       </StickyHeader>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt enim
-      laborum rem ex ratione doloremque doloribus praesentium sequi earum quo
-      optio soluta quis esse illo molestiae deserunt, ullam nihil id. Lorem
-      ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt enim laborum
-      rem ex ratione doloremque doloribus praesentium sequi earum quo optio
-      soluta quis esse illo molestiae deserunt, ullam nihil id. Lorem ipsum
-      dolor sit, amet consectetur adipisicing elit. Nesciunt enim laborum rem ex
-      ratione doloremque doloribus praesentium sequi earum quo optio soluta quis
-      esse illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id. Lorem ipsum dolor sit, amet
-      consectetur adipisicing elit. Nesciunt enim laborum rem ex ratione
-      doloremque doloribus praesentium sequi earum quo optio soluta quis esse
-      illo molestiae deserunt, ullam nihil id.
+      <Container ref={refs[0]} maxWidth="sm">
+        <Typography variant="h4" gutterBottom>
+          Profile
+        </Typography>
+        <Typography variant="body1">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id.
+        </Typography>
+      </Container>
+      <Container ref={refs[1]} maxWidth="sm">
+        <Typography variant="h4" gutterBottom>
+          Experiences
+        </Typography>
+        <Typography variant="body1">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id.
+        </Typography>
+      </Container>
+      <Container ref={refs[2]} maxWidth="sm">
+        <Typography variant="h4" gutterBottom>
+          Stack
+        </Typography>
+        <Typography variant="body1">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
+          enim laborum rem ex ratione doloremque doloribus praesentium sequi
+          earum quo optio soluta quis esse illo molestiae deserunt, ullam nihil
+          id.
+        </Typography>
+      </Container>
     </div>
   );
 };

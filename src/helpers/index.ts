@@ -1,4 +1,4 @@
-import { MutableRefObject } from "react";
+export { default as scrollToRef } from "./scroll-to-ref";
 
 // Not safe for server rendering
 export const vh = function(v: number) {
@@ -7,10 +7,4 @@ export const vh = function(v: number) {
     window.innerHeight || 0
   );
   return (v * h) / 100;
-};
-
-export const scrollToRef = (ref: MutableRefObject<HTMLElement | null>) => {
-  if (ref && ref.current) {
-    window.scrollTo(0, ref.current.offsetTop - 128);
-  }
 };
