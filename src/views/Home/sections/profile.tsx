@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Box, Theme } from "@material-ui/core";
+import { Container, Typography, Box } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { CustomDivider } from "../../../components";
 

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { ParticuleNetwork, StickyHeader } from "../../components";
 // import { useScrollSpy } from "../../hooks";
-import { Button, Typography, Container } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 import { scrollToRef } from "../../helpers";
 import { useScrollSpy } from "../../hooks";
