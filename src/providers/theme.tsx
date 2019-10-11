@@ -1,11 +1,8 @@
 import React, { createContext, useReducer, useContext, Dispatch } from "react";
 import { Theme, MuiThemeProvider } from "@material-ui/core/styles";
 import { DarkTheme, LightTheme } from "../styles/themes";
-import darkTheme from "../styles/themes/dark-theme";
-
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
 const LOCALSTORAGE_THEME_KEY = "THEME";
-
-
 
 interface ThemeState {
   themeName: string;
@@ -27,12 +24,10 @@ interface ThemeContext {
   dispatchTheme: Dispatch<any>;
 }
 
-
 const ThemeMap = {
-  [THEME_NAMES.DARK]: darkTheme,
+  [THEME_NAMES.DARK]: DarkTheme,
   [THEME_NAMES.LIGHT]: LightTheme
 };
-
 
 const saveTheme = (theme: string) => {
   if (window.localStorage) {
@@ -50,9 +45,11 @@ const getThemeName = () => {
 
 export const ThemeContext = createContext({} as ThemeContext);
 const reducer = (state: ThemeState, action: any): ThemeState => {
+  let themeName;
   switch (action.type) {
     case THEME_ACTIONS.SWITCH_MODE:
-      var themeName = state.themeName === THEME_NAMES.DARK
+      themeName =
+        state.themeName === THEME_NAMES.DARK
           ? THEME_NAMES.LIGHT
           : THEME_NAMES.DARK;
       saveTheme(themeName);
@@ -61,14 +58,14 @@ const reducer = (state: ThemeState, action: any): ThemeState => {
         theme: ThemeMap[themeName]
       };
     case THEME_ACTIONS.SET_LIGHT_MODE:
-      var themeName = THEME_NAMES.LIGHT;
+      themeName = THEME_NAMES.LIGHT;
       saveTheme(themeName);
       return {
         themeName,
         theme: ThemeMap[themeName]
       };
     case THEME_ACTIONS.SET_DARK_MODE:
-      var themeName = THEME_NAMES.DARK;
+      themeName = THEME_NAMES.DARK;
       saveTheme(themeName);
       return {
         themeName,
@@ -86,13 +83,11 @@ export const AppThemeProvider: React.FunctionComponent = ({ children }) => {
   });
   return (
     <ThemeContext.Provider value={{ themeState, dispatchTheme }}>
-      <MuiThemeProvider
-        theme={
-          themeState.themeName === THEME_NAMES.DARK ? DarkTheme : LightTheme
-        }
-      >
-        {children}
-      </MuiThemeProvider>
+      <StyledThemeProvider theme={ThemeMap[themeState.themeName]}>
+        <MuiThemeProvider theme={ThemeMap[themeState.themeName]}>
+          {children}
+        </MuiThemeProvider>
+      </StyledThemeProvider>
     </ThemeContext.Provider>
   );
 };

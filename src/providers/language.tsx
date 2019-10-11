@@ -3,26 +3,20 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "../translations";
 
 interface LanguageState {
-  language: languages;
+  language: Language;
 }
 
-type languages = "FR" | "EN";
-
-export const LANGUAGES: Record<string, languages> = {
-  FR: "FR",
-  EN: "EN"
-};
-
-export const LANGUAGES_ACTIONS = {
-  SET_ENGLISH: "SET_ENGLISH",
-  SET_FRENCH: "SET_FRENCH"
-};
+type Language = "fr" | "en";
 
 interface LanguageContext {
   languageState: LanguageState;
   dispatchLanguage: Dispatch<any>;
 }
-export const LanguageContext = createContext({} as LanguageContext);
+
+const languageWithoutCountry = (): Language => {
+  console.log(i18n.language.substring(0, 2));
+  return i18n.language.substring(0, 2) as Language;
+};
 
 const reducer = (state: LanguageState, action: any): LanguageState => {
   switch (action.type) {
@@ -37,9 +31,21 @@ const reducer = (state: LanguageState, action: any): LanguageState => {
   }
 };
 
-export const AppLanguageProvider: React.FunctionComponent = ({ children }) => {
+const LANGUAGES: Record<string, Language> = {
+  FR: "fr",
+  EN: "en"
+};
+
+const LANGUAGES_ACTIONS = {
+  SET_ENGLISH: "SET_ENGLISH",
+  SET_FRENCH: "SET_FRENCH"
+};
+
+const LanguageContext = createContext({} as LanguageContext);
+
+const AppLanguageProvider: React.FunctionComponent = ({ children }) => {
   const [languageState, dispatchLanguage] = useReducer(reducer, {
-    language: LANGUAGES.FR
+    language: languageWithoutCountry()
   });
 
   return (
@@ -54,4 +60,12 @@ export const AppLanguageProvider: React.FunctionComponent = ({ children }) => {
   );
 };
 
-export const useLanguageValue = () => useContext(LanguageContext);
+const useLanguageValue = () => useContext(LanguageContext);
+
+export {
+  LANGUAGES,
+  LANGUAGES_ACTIONS,
+  LanguageContext,
+  AppLanguageProvider,
+  useLanguageValue
+};

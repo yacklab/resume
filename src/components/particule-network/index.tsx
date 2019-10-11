@@ -3,17 +3,12 @@ import styled from "styled-components";
 // import { useThemeValue, MODES } from "../../providers/theme";
 import ParticleCanvas from "./canvas";
 import { useThemeValue, THEME_NAMES } from "../../providers/theme";
-import { Typography } from "@material-ui/core";
 import { LongTypedName } from "../typed-name";
 
-type CanvasContainerProps = {
-  dark: boolean;
-};
-const CanvasContainer = styled.div`
+const CanvasContainer = styled.div<{ dark: boolean }>`
   position: relative;
-  background-color: ${(p: CanvasContainerProps) =>
-    p.dark ? "#08AEEA" : "#ff9a8b"};
-  background-image: ${(p: CanvasContainerProps) =>
+  background-color: ${p => (p.dark ? "#08AEEA" : "#ff9a8b")};
+  background-image: ${p =>
     p.dark
       ? "linear-gradient(315deg, #08AEEA 0%, #2AF598 100%)"
       : "linear-gradient(90deg, #ff9a8b 0%, #ff6a88 55%, #ff99ac 100%)"};

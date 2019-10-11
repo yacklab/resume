@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Link from "@material-ui/core/Link";
 
-import { useThemeValue, THEME_NAMES } from "../../providers/theme";
-import { Box, Typography } from "@material-ui/core";
+import { Box, Theme } from "@material-ui/core";
 import { RouterPaths } from "../../router";
 import { RouterLink } from "../router-link";
 import { withRouter, RouteComponentProps } from "react-router-dom";
@@ -11,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { Actions } from "./actions";
 import { ShortTypedName } from "../";
 
-const Container = styled.div<{ bgColor: string }>`
+const Container = styled.div<{ theme: Theme }>`
   width: 100%;
   height: 64px;
   z-index: 9;
@@ -22,7 +21,7 @@ const Container = styled.div<{ bgColor: string }>`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: ${props => props.bgColor};
+  background-color: ${({ theme }) => theme.palette.background.default};
   transition: all 200ms ease;
   transform: translateZ(0);
 `;
@@ -30,11 +29,10 @@ const Container = styled.div<{ bgColor: string }>`
 const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
   location
 }) => {
-  const { themeState } = useThemeValue();
   const { t } = useTranslation();
 
   return (
-    <Container bgColor={themeState.theme.palette.background.default}>
+    <Container>
       <ShortTypedName />
       <div>
         <Box component="span" marginX={0.5}>

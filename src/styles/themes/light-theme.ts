@@ -8,6 +8,9 @@ import { CommonTheme, responsiveFontSizeOptions } from "./common-theme";
 const lightTheme: Theme = createMuiTheme({
   palette: {
     type: "light",
+    secondary: {
+      main: "#48aff0"
+    },
     text: {
       primary: "#30404d"
     },

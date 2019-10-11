@@ -12,7 +12,9 @@ i18n
       en,
       fr
     },
+    load: "languageOnly",
     fallbackLng: "fr",
+    lowerCaseLng: true,
     debug: true
   });
 
