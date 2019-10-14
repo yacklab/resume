@@ -9,7 +9,8 @@ export default {
     NAVBAR: {
       HOME: "À propos de moi",
       RESUME: "CV",
-      PROJECTS: "Projets"
+      PROJECTS: "Projets",
+      GITHUB: "Voir sur github"
     },
     HOME: {
       PROFILE: {
@@ -57,7 +58,8 @@ export default {
       },
       STACK: {
         TITLE: "Stack",
-        SUBTITLE: "Here are some of the tech I ❤️ to use"
+        SUBTITLE: "Here are some of the tech I ❤️ to use",
+        BODY: "Discutons de votre comment je peux intégrer votre équipe"
       }
     }
   }

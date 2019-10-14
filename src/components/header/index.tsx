@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Link from "@material-ui/core/Link";
 
 import { Box, Theme } from "@material-ui/core";
-import { RouterPaths } from "../../router";
-import { RouterLink } from "../router-link";
+// import { RouterPaths } from "../../router";
+// import { RouterLink } from "../router-link";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Actions } from "./actions";
@@ -35,7 +35,7 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
     <Container>
       <ShortTypedName />
       <div>
-        <Box component="span" marginX={0.5}>
+        {/* <Box component="span" marginX={0.5}>
           <Link
             underline="hover"
             color={
@@ -48,8 +48,19 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
           >
             {t("NAVBAR.HOME")}
           </Link>
-        </Box>
+        </Box> */}
         <Box component="span" marginX={0.5}>
+          <Link href="https://github.com/yacklab/resume" underline="hover">
+            <img
+              height={15}
+              src="/ghmark.png"
+              alt="github"
+              style={{ marginRight: 5 }}
+            />
+            {t("NAVBAR.GITHUB")}
+          </Link>
+        </Box>
+        {/* <Box component="span" marginX={0.5}>
           <Link
             underline="hover"
             color={
@@ -76,7 +87,7 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
           >
             {t("NAVBAR.PROJECTS")}
           </Link>
-        </Box>
+        </Box> */}
       </div>
       <Actions />
     </Container>

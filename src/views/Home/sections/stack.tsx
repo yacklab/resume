@@ -9,6 +9,8 @@ const Stack = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-row-gap: 30px;
+  justify-items: center;
+  height: 100%;
 `;
 
 const techs: TechName[] = [
@@ -50,6 +52,9 @@ const StackSection = React.forwardRef<HTMLElement>((props, ref) => {
         ))}
       </Stack>
       <CustomDivider />
+      <Box>
+        <Typography variant="body2">{t("HOME.STACK.BODY")}</Typography>
+      </Box>
     </Container>
   );
 });
