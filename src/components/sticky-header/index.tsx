@@ -15,6 +15,7 @@ const Section = styled.div`
   will-change: scroll-position;
   position: sticky;
   top: 64px;
+  z-index: 100;
   &.sticky {
     position: fixed;
     top: ${(props: StyledProps) => `${props.offset}px`};

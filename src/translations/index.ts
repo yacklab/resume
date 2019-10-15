@@ -14,8 +14,7 @@ i18n
     },
     load: "languageOnly",
     fallbackLng: "fr",
-    lowerCaseLng: true,
-    debug: true
+    lowerCaseLng: true
   });
 
 export default i18n;

@@ -2,14 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import Link from "@material-ui/core/Link";
 
-import { Box, Theme } from "@material-ui/core";
+import { Theme } from "@material-ui/core";
 // import { RouterPaths } from "../../router";
 // import { RouterLink } from "../router-link";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Actions } from "./actions";
 import { ShortTypedName } from "../";
-
+import { useThemeValue, THEME_NAMES } from "../../providers/theme";
+import { useStyle } from "../../hooks";
+import CloudDownload from "@material-ui/icons/CloudDownload";
 const Container = styled.div<{ theme: Theme }>`
   width: 100%;
   height: 64px;
@@ -30,7 +32,8 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
   location
 }) => {
   const { t } = useTranslation();
-
+  const { themeState } = useThemeValue();
+  const classes = useStyle();
   return (
     <Container>
       <ShortTypedName />
@@ -49,31 +52,37 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
             {t("NAVBAR.HOME")}
           </Link>
         </Box> */}
-        <Box component="span" marginX={0.5}>
-          <Link href="https://github.com/yacklab/resume" underline="hover">
-            <img
-              height={15}
-              src="/ghmark.png"
-              alt="github"
-              style={{ marginRight: 5 }}
-            />
-            {t("NAVBAR.GITHUB")}
-          </Link>
-        </Box>
-        {/* <Box component="span" marginX={0.5}>
-          <Link
-            underline="hover"
-            color={
-              location.pathname === RouterPaths.resume
-                ? "inherit"
-                : "textSecondary"
+        <Link
+          className={classes.headerLinks}
+          color="inherit"
+          href="https://github.com/yacklab/resume"
+          underline="hover"
+        >
+          <img
+            height={15}
+            src={
+              themeState.themeName === THEME_NAMES.DARK
+                ? "ghmark_dark.png"
+                : "/ghmark.png"
             }
-            to={RouterPaths.resume}
-            component={RouterLink}
-          >
-            {t("NAVBAR.RESUME")}
-          </Link>
-        </Box>
+            alt="github"
+            style={{ marginRight: 5 }}
+          />
+          {t("NAVBAR.GITHUB")}
+        </Link>
+        <Link
+          color="inherit"
+          className={classes.headerLinks}
+          underline="hover"
+          href="https://firebasestorage.googleapis.com/v0/b/morgantomasini-2edbb.appspot.com/o/resume.pdf?alt=media&token=07f16bce-074d-40dc-bbe5-703b75e89dc9"
+        >
+          <CloudDownload
+            fontSize="small"
+            style={{ marginRight: 5, transform: "translateY(4px)" }}
+          />
+          {t("NAVBAR.RESUME")}
+        </Link>
+        {/* 
         <Box component="span" marginX={0.5}>
           <Link
             underline="hover"

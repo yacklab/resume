@@ -6,3 +6,4 @@ export { FrenchFlag, EnglishFlag } from "./flags";
 export { CustomDivider } from "./divider";
 export { default as TechIcon } from "./tech-icon";
 export { default as Translator } from "./translator";
+export { default as Uploader } from "./uploader";

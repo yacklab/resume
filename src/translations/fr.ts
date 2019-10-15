@@ -4,7 +4,8 @@ export default {
       FRENCH: "Français",
       ENGLISH: "Anglais",
       DARK_MODE: "Dark Mode",
-      LIGHT_MODE: "Light Mode"
+      LIGHT_MODE: "Light Mode",
+      SEND: "ENVOYER"
     },
     NAVBAR: {
       HOME: "À propos de moi",
@@ -15,10 +16,8 @@ export default {
     HOME: {
       PROFILE: {
         TITLE: "Présentation",
-        SUBTITLE: "Je suis un web developper (entre autres choses)",
-        BODY: `Je m’appelle Morgan, je me destinais à être avocat mais depuis 5 ans peu ou prou je passe finalement mon temps à hacker du JavaScript, principalement en front end mais j’aime aussi faire des micro services, des lambdas et des scrappers. 
-        J’ai appris la programmation en production, en fondant Bowkr (plateforme de mise en relation professionnelles). 
-        Durant cette période j’ai construit des produits, levé des fonds, embauché, licencié, géré des équipes, géré des projets. J’ai surtout trouvé ce que j’aimais faire. J’aime apprendre, j’aime cogiter, j’aime construire des produits, j’aime trouver des solutions seul mais surtout en équipe, j’aime voir des produits évoluer.
+        SUBTITLE: "Je suis un web developper Full Stack (entre autres choses)",
+        BODY: `Je m’appelle Morgan, je me destinais à être avocat mais depuis 5 ans peu ou prou je passe finalement mon temps à hacker du JavaScript, principalement en front end mais j’aime aussi faire des micro services, des lambdas et des scrappers. J’ai appris la programmation en production, en fondant Bowkr (plateforme de mise en relation professionnelles). Durant cette période j’ai construit des produits, levé des fonds, embauché, licencié, géré des équipes, géré des projets. J’ai surtout trouvé ce que j’aimais faire. J’aime apprendre, j’aime cogiter, j’aime construire des produits, j’aime trouver des solutions seul mais surtout en équipe, j’aime voir des produits évoluer.
         `,
         DETAILS_TITLE: "Details",
         NAME_HINT: "Nom : ",
@@ -37,7 +36,6 @@ export default {
         CONDITIONS: `Je cherche à intégrer une équipe brillante qui travaille sur un excellent produit, mes objectifs sont de partager et améliorer mes compétences tant en programmation qu’en product design. Être autodidacte présente des avantages et des inconvénients et j’ai hâte de partager les premiers et de me débarrasser des seconds. 
         Je cherche une entreprise avec une forte culture tech centré sur l’itération et la maintenabilité. 
         Je cherche une équipe remote bien organisé mais je suis aussi ouvert quant à la possibilité d’une relocalisation.
-
         `
       },
       EXPERIENCES: {
@@ -58,8 +56,11 @@ export default {
       },
       STACK: {
         TITLE: "Stack",
-        SUBTITLE: "Here are some of the tech I ❤️ to use",
-        BODY: "Discutons de votre comment je peux intégrer votre équipe"
+        SUBTITLE: "Here are some of the tech I ❤️ to use"
+      },
+      CONTACT: {
+        TITLE: "Contact",
+        SUBTITLE: "Discutons de comment je peux intégrer votre équipe"
       }
     }
   }

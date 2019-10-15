@@ -1,9 +1,12 @@
 import React from "react";
 import { Container, Typography, Box } from "@material-ui/core";
+
 import { useTranslation } from "react-i18next";
 import { CustomDivider } from "../../../components";
+import useStyles from "../../../hooks/use-style";
 
-export const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
+const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
+  const classes = useStyles();
   const { t } = useTranslation();
   return (
     <Container ref={ref} maxWidth="sm">
@@ -15,19 +18,28 @@ export const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
           {t("HOME.PROFILE.SUBTITLE")}
         </Typography>
       </Box>
-
       <Typography paragraph variant="body2">
         {t("HOME.PROFILE.BODY")}
       </Typography>
       <CustomDivider />
-      <Typography align="center" variant="h5" gutterBottom>
+      <Typography
+        className={classes.subtitle}
+        align="center"
+        variant="h5"
+        gutterBottom
+      >
         {t("HOME.PROFILE.CONDITIONS_TITLE")}
       </Typography>
       <Typography variant="body2" gutterBottom>
         {t("HOME.PROFILE.CONDITIONS")}
       </Typography>
       <CustomDivider />
-      <Typography align="center" variant="h5" gutterBottom>
+      <Typography
+        className={classes.subtitle}
+        align="center"
+        variant="h5"
+        gutterBottom
+      >
         {t("HOME.PROFILE.DETAILS_TITLE")}
       </Typography>
       <Box>
@@ -129,3 +141,5 @@ export const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
     </Container>
   );
 });
+
+export default ProfileSection;

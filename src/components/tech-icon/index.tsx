@@ -26,30 +26,32 @@ interface TechIconProps {
   techName: TechName;
   height?: number;
   showName?: boolean;
+  direction?: "row" | "column";
 }
 
 const TechIcon: React.FunctionComponent<TechIconProps> = ({
   techName,
   height = 16,
-  showName = false
+  showName = false,
+  direction = "column"
 }) => {
   return (
     <React.Fragment>
       <div
         style={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: direction,
           alignItems: "center"
         }}
       >
         <img
           height={height}
-          style={{ margin: "0 10px" }}
+          style={{ margin: "5px 10px" }}
           src={`./stack/${techName}.svg`}
           alt={techName}
         />
         {showName && (
-          <Typography display="inline">
+          <Typography display="block">
             {startCase(toLower(techName))}
           </Typography>
         )}

@@ -48,13 +48,14 @@ const StackSection = React.forwardRef<HTMLElement>((props, ref) => {
       </Box>
       <Stack>
         {techs.map((tech: TechName, index: number) => (
-          <TechIcon key={index} techName={tech} height={35} />
+          <TechIcon key={index} techName={tech} showName height={35} />
         ))}
       </Stack>
-      <CustomDivider />
-      <Box>
+      {/* <CustomDivider /> */}
+      {/* <Box>
         <Typography variant="body2">{t("HOME.STACK.BODY")}</Typography>
-      </Box>
+      </Box> */}
+      <CustomDivider color="secondary" />
     </Container>
   );
 });

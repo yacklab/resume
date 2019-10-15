@@ -4,13 +4,14 @@ import {
   createMuiTheme
 } from "@material-ui/core/styles";
 import { CommonTheme, responsiveFontSizeOptions } from "./common-theme";
+import { pink, deepOrange } from "@material-ui/core/colors";
 
 const lightTheme: Theme = createMuiTheme({
   palette: {
     type: "light",
-    secondary: {
-      main: "#48aff0"
-    },
+    primary: pink,
+    secondary: deepOrange,
+
     text: {
       primary: "#30404d"
     },

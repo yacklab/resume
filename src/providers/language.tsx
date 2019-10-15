@@ -14,7 +14,6 @@ interface LanguageContext {
 }
 
 const languageWithoutCountry = (): Language => {
-  console.log(i18n.language.substring(0, 2));
   return i18n.language.substring(0, 2) as Language;
 };
 
