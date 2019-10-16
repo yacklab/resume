@@ -1,21 +1,29 @@
 const functions = require("firebase-functions");
-const ReactDOMServer = require("react-dom/server");
-const express = require("express");
-const path = require("path");
-const app = express();
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
+const nodemailer = require("nodemailer");
+const smtpTransport = require("nodemailer-smtp-transport");
 
-app.use(
-  express.static(path.resolve(__dirname, "..", "build"), { maxAge: "30d" })
-);
+const gmailEmail = functions.config().gmail.email;
+const gmailPassword = functions.config().gmail.password;
 
-app.get("*", function(req, res) {
-  res.sendfile(path.resolve(__dirname, "..", "build/index.htm"));
+const mailTransport = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: gmailEmail,
+    pass: gmailPassword
+  }
 });
 
-app.get("/hello", (request, response) => {
-  response.send("hello / hello");
-});
-
-exports.entrypoint = functions.https.onRequest(app);
+exports.notifyContact = functions.firestore
+  .document("contacts/{contactId}")
+  .onCreate(async (snap, context) => {
+    try {
+      await mailTransport.sendMail({
+        to: "morgantomasini@gmail.com", // list of receivers
+        subject: "site contact", // Subject line
+        text: `${JSON.stringify(snap.data(), null, 2)}`
+      });
+    } catch (error) {
+      console.error("There was an error while sending the email:", error);
+    }
+    return null;
+  });
