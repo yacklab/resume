@@ -50,15 +50,15 @@ const ExperiencesSection = React.forwardRef<HTMLElement>((props, ref) => {
           {t("HOME.EXPERIENCES.DATE")}
         </Typography>
         <img src="/bowkr/bowkr_old.jpg" style={{ maxWidth: "100%" }} alt="" />
-        <Typography paragraph component="div" variant="body2" gutterBottom>
+        <Typography paragraph component="div" variant="body1" gutterBottom>
           <Translator k="HOME.EXPERIENCES.BODY" />
         </Typography>
         <img
-          src="/bowkr/facebook_share.jpg"
+          src="/bowkr/facebook_share.jp2"
           style={{ maxWidth: "100%" }}
           alt=""
         />
-        <Typography paragraph component="div" variant="body2" gutterBottom>
+        <Typography paragraph component="div" variant="body1" gutterBottom>
           <Translator k="HOME.EXPERIENCES.BODY_2" />
         </Typography>
       </Box>

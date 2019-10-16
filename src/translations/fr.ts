@@ -1,5 +1,11 @@
 export default {
   translation: {
+    ERRORS: {
+      UNKNOWN: "Une error s'est produite",
+      FILE_TYPE: "Type de fichier non authorisé",
+      FIELD_REQUIRED: "Ce champ est requis",
+      FIELD_FORMAT: "Ce champ est mal formaté"
+    },
     WORDS: {
       FRENCH: "Français",
       ENGLISH: "Anglais",
@@ -60,7 +66,8 @@ export default {
       },
       CONTACT: {
         TITLE: "Contact",
-        SUBTITLE: "Discutons de comment je peux intégrer votre équipe"
+        SUBTITLE: "Discutons de comment je peux intégrer votre équipe",
+        FILE_TEXT: "Envoyer une fiche de poste"
       }
     }
   }

@@ -7,6 +7,44 @@
         "source": "**",
         "destination": "/index.html"
       }
+    ],
+    "headers": [
+      {
+        "source": "/",
+        "headers": [
+          {
+            "key": "Link",
+            "value": "</js/app.js>;rel=preload;as=script,</css/app.css>;rel=preload;as=style"
+          }
+        ]
+      },
+      {
+        "source": "/users/*",
+        "headers": [
+          {
+            "key": "Link",
+            "value": "</js/app.js>;rel=preload;as=script,</css/app.css>;rel=preload;as=style;nopush,</css/users.css>;rel=preload;as=style"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|svg|jp2)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=3200200"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(css|js|js.br|js.gz)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=3200200"
+          }
+        ]
+      }
     ]
   }
 }

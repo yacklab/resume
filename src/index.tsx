@@ -6,7 +6,7 @@ import { default as AppContext } from "./providers";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { AppRouter } from "./router";
 import { StylesProvider } from "@material-ui/styles";
-import "typeface-roboto";
+// import "typeface-roboto";
 import "./translations/index";
 
 const App = () => {

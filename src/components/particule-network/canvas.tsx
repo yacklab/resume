@@ -170,6 +170,7 @@ const ParticleNetwork: React.FunctionComponent<ParticleNetworkProps> = ({
   useEffect(() => {
     const canvas = canvaRef.current;
     if (canvas) {
+      // CreateNet(canvas, particleOptions as ParticleOptions);
       CreateParticuleNetwork(canvas, particleOptions as ParticleOptions).init();
     }
     const handleResize = function() {

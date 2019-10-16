@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { CustomDivider, TechIcon } from "../../../components";
 import { TechName } from "../../../components/tech-icon";
+import { useThemeValue, THEME_NAMES } from "../../../providers/theme";
 
 const Stack = styled.div`
   display: grid;
@@ -36,6 +37,7 @@ const techs: TechName[] = [
 
 const StackSection = React.forwardRef<HTMLElement>((props, ref) => {
   const { t } = useTranslation();
+  const { themeState } = useThemeValue();
   return (
     <Container ref={ref} maxWidth="sm">
       <Box marginY={5}>
@@ -48,7 +50,13 @@ const StackSection = React.forwardRef<HTMLElement>((props, ref) => {
       </Box>
       <Stack>
         {techs.map((tech: TechName, index: number) => (
-          <TechIcon key={index} techName={tech} showName height={35} />
+          <TechIcon
+            key={index}
+            dark={themeState.themeName === THEME_NAMES.DARK}
+            techName={tech}
+            showName
+            height={35}
+          />
         ))}
       </Stack>
       {/* <CustomDivider /> */}

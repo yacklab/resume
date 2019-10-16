@@ -18,7 +18,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
           {t("HOME.PROFILE.SUBTITLE")}
         </Typography>
       </Box>
-      <Typography paragraph variant="body2">
+      <Typography paragraph variant="body1">
         {t("HOME.PROFILE.BODY")}
       </Typography>
       <CustomDivider />
@@ -30,7 +30,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
       >
         {t("HOME.PROFILE.CONDITIONS_TITLE")}
       </Typography>
-      <Typography variant="body2" gutterBottom>
+      <Typography variant="body1" gutterBottom>
         {t("HOME.PROFILE.CONDITIONS")}
       </Typography>
       <CustomDivider />
@@ -46,7 +46,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
         <Typography
           style={{ fontWeight: "bold" }}
           align="center"
-          variant="body2"
+          variant="body1"
           display="inline"
           gutterBottom
         >
@@ -54,7 +54,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
         </Typography>
         <Typography
           align="center"
-          variant="body2"
+          variant="body1"
           display="inline"
           gutterBottom
         >
@@ -65,7 +65,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
         <Typography
           style={{ fontWeight: "bold" }}
           align="center"
-          variant="body2"
+          variant="body1"
           display="inline"
           gutterBottom
         >
@@ -73,7 +73,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
         </Typography>
         <Typography
           align="center"
-          variant="body2"
+          variant="body1"
           display="inline"
           gutterBottom
         >
@@ -84,7 +84,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
         <Typography
           align="center"
           style={{ fontWeight: "bold" }}
-          variant="body2"
+          variant="body1"
           display="inline"
           gutterBottom
         >
@@ -92,7 +92,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
         </Typography>
         <Typography
           align="center"
-          variant="body2"
+          variant="body1"
           display="inline"
           gutterBottom
         >
@@ -103,7 +103,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
         <Typography
           align="center"
           style={{ fontWeight: "bold" }}
-          variant="body2"
+          variant="body1"
           display="inline"
           gutterBottom
         >
@@ -111,7 +111,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
         </Typography>
         <Typography
           align="center"
-          variant="body2"
+          variant="body1"
           display="inline"
           gutterBottom
         >
@@ -122,7 +122,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
         <Typography
           align="center"
           style={{ fontWeight: "bold" }}
-          variant="body2"
+          variant="body1"
           display="inline"
           gutterBottom
         >
@@ -130,7 +130,7 @@ const ProfileSection = React.forwardRef<HTMLElement>((props, ref) => {
         </Typography>
         <Typography
           align="center"
-          variant="body2"
+          variant="body1"
           display="inline"
           gutterBottom
         >

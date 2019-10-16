@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "@material-ui/core/Link";
 
@@ -12,6 +12,7 @@ import { ShortTypedName } from "../";
 import { useThemeValue, THEME_NAMES } from "../../providers/theme";
 import { useStyle } from "../../hooks";
 import CloudDownload from "@material-ui/icons/CloudDownload";
+import { appStorage } from "../../firebase";
 const Container = styled.div<{ theme: Theme }>`
   width: 100%;
   height: 64px;
@@ -34,6 +35,17 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
   const { t } = useTranslation();
   const { themeState } = useThemeValue();
   const classes = useStyle();
+  const [resumeUrl, setResumeUrl] = useState();
+
+  useEffect(() => {
+    appStorage
+      .ref("/public/resume.pdf")
+      .getDownloadURL()
+      .then(function(url) {
+        setResumeUrl(url);
+      });
+  }, [resumeUrl]);
+
   return (
     <Container>
       <ShortTypedName />
@@ -70,18 +82,20 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
           />
           {t("NAVBAR.GITHUB")}
         </Link>
-        <Link
-          color="inherit"
-          className={classes.headerLinks}
-          underline="hover"
-          href="https://firebasestorage.googleapis.com/v0/b/morgantomasini-2edbb.appspot.com/o/resume.pdf?alt=media&token=07f16bce-074d-40dc-bbe5-703b75e89dc9"
-        >
-          <CloudDownload
-            fontSize="small"
-            style={{ marginRight: 5, transform: "translateY(4px)" }}
-          />
-          {t("NAVBAR.RESUME")}
-        </Link>
+        {resumeUrl && (
+          <Link
+            color="inherit"
+            className={classes.headerLinks}
+            underline="hover"
+            href={resumeUrl}
+          >
+            <CloudDownload
+              fontSize="small"
+              style={{ marginRight: 5, transform: "translateY(4px)" }}
+            />
+            {t("NAVBAR.RESUME")}
+          </Link>
+        )}
         {/* 
         <Box component="span" marginX={0.5}>
           <Link
