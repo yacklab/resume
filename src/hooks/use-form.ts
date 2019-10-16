@@ -67,7 +67,6 @@ const useForm = <T>(
 
   const handleOnSubmit = useCallback(
     event => {
-      console.log("handling submit");
       event.preventDefault();
 
       // Make sure that validateState returns false

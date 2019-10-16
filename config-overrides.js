@@ -2,12 +2,12 @@ const { override, useBabelRc } = require("customize-cra");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 
-module.exports = override(useBabelRc(), config => {
-  config.plugins = (config.plugins || []).concat(new BundleAnalyzerPlugin());
+module.exports = override((config, env) => {
+  // config.plugins = (config.plugins || []).concat(new BundleAnalyzerPlugin());
   return config;
 });
 
-// ile sizes after gzip:
+// file sizes after gzip:
 
 //   166.6 KB  build/static/js/2.ae41079b.chunk.js
 //   16.5 KB   build/static/js/main.b54cf512.chunk.js

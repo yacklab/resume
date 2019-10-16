@@ -20,7 +20,6 @@ const ContactSection = React.forwardRef<HTMLElement>((props, ref) => {
   const [loading, setLoading] = useState(false);
 
   const callBack = useCallback((f: FormState) => {
-    console.log("submiting");
     setLoading(true);
     appDB
       .collection("contacts")
@@ -50,14 +49,10 @@ const ContactSection = React.forwardRef<HTMLElement>((props, ref) => {
         regEx: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
       },
       company: {
-        required: true,
-        //eslint-disable-next-line
-        regEx: /^([a-zA-Z0-9_-\u0600-\u065f\u066a-\u06EF\u06fa-\u06ff\ufb8a\u067e\u0686\u06af\u0750-\u077f\ufb50-\ufbc1\ufbd3-\ufd3f\ufd50-\ufd8f\ufd92-\ufdc7\ufe70-\ufefc\uFDF0-\uFDFD]+){2,100}$/
+        required: true
       },
       message: {
-        required: false,
-        //eslint-disable-next-line
-        regEx: /^([a-zA-Z0-9_-\u0600-\u065f\u066a-\u06EF\u06fa-\u06ff\ufb8a\u067e\u0686\u06af\u0750-\u077f\ufb50-\ufbc1\ufbd3-\ufd3f\ufd50-\ufd8f\ufd92-\ufdc7\ufe70-\ufefc\uFDF0-\uFDFD]+){0,500}$/
+        required: false
       },
       fileUrl: {
         required: false
