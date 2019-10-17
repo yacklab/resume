@@ -9,8 +9,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en,
-      fr
+      en: en,
+      fr: fr
     },
     load: "languageOnly",
     fallbackLng: "fr",

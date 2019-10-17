@@ -6,6 +6,7 @@ import { useForm } from "../../../hooks";
 import { appDB } from "../../../firebase";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { useLanguageValue } from "../../../providers/language";
 
 interface FormState {
   email: string;
@@ -18,12 +19,15 @@ const ContactSection = React.forwardRef<HTMLElement>((props, ref) => {
   const { t } = useTranslation();
   const [submited, setSubmited] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const { languageState } = useLanguageValue();
   const callBack = useCallback((f: FormState) => {
     setLoading(true);
     appDB
       .collection("contacts")
-      .add(f)
+      .add({
+        ...f,
+        language: languageState.language
+      })
       .then(() => {
         setSubmited(true);
         setLoading(false);

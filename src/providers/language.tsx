@@ -30,19 +30,19 @@ const reducer = (state: LanguageState, action: any): LanguageState => {
   }
 };
 
-const LANGUAGES: Record<string, Language> = {
+export const LANGUAGES: Record<string, Language> = {
   FR: "fr",
   EN: "en"
 };
 
-const LANGUAGES_ACTIONS = {
+export const LANGUAGES_ACTIONS = {
   SET_ENGLISH: "SET_ENGLISH",
   SET_FRENCH: "SET_FRENCH"
 };
 
-const LanguageContext = createContext({} as LanguageContext);
+export const LanguageContext = createContext({} as LanguageContext);
 
-const AppLanguageProvider: React.FunctionComponent = ({ children }) => {
+export const AppLanguageProvider: React.FunctionComponent = ({ children }) => {
   const [languageState, dispatchLanguage] = useReducer(reducer, {
     language: languageWithoutCountry()
   });
@@ -59,12 +59,4 @@ const AppLanguageProvider: React.FunctionComponent = ({ children }) => {
   );
 };
 
-const useLanguageValue = () => useContext(LanguageContext);
-
-export {
-  LANGUAGES,
-  LANGUAGES_ACTIONS,
-  LanguageContext,
-  AppLanguageProvider,
-  useLanguageValue
-};
+export const useLanguageValue = () => useContext(LanguageContext);

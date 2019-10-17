@@ -17,6 +17,7 @@ export const HomeView: React.FunctionComponent = () => {
   const activeSectionIndex = useScrollSpy(refs, {
     offset: -210
   });
+
   return (
     <div className="home-bg">
       <ParticuleNetwork />

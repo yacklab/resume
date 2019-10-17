@@ -13,6 +13,7 @@ import { useThemeValue, THEME_NAMES } from "../../providers/theme";
 import { useStyle } from "../../hooks";
 import CloudDownload from "@material-ui/icons/CloudDownload";
 import { appStorage } from "../../firebase";
+
 const Container = styled.div<{ theme: Theme }>`
   width: 100%;
   height: 64px;
@@ -27,6 +28,13 @@ const Container = styled.div<{ theme: Theme }>`
   background-color: ${({ theme }) => theme.palette.background.default};
   transition: all 200ms ease;
   transform: translateZ(0);
+`;
+const LinkContainer = styled.div<{ theme: Theme }>`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  line-height: 25px;
 `;
 
 const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
@@ -49,7 +57,7 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
   return (
     <Container>
       <ShortTypedName />
-      <div>
+      <LinkContainer>
         {/* <Box component="span" marginX={0.5}>
           <Link
             underline="hover"
@@ -111,7 +119,7 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
             {t("NAVBAR.PROJECTS")}
           </Link>
         </Box> */}
-      </div>
+      </LinkContainer>
       <Actions />
     </Container>
   );
