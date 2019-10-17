@@ -20,22 +20,25 @@ const ContactSection = React.forwardRef<HTMLElement>((props, ref) => {
   const [submited, setSubmited] = useState(false);
   const [loading, setLoading] = useState(false);
   const { languageState } = useLanguageValue();
-  const callBack = useCallback((f: FormState) => {
-    setLoading(true);
-    appDB
-      .collection("contacts")
-      .add({
-        ...f,
-        language: languageState.language
-      })
-      .then(() => {
-        setSubmited(true);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, []);
+  const callBack = useCallback(
+    (f: FormState) => {
+      setLoading(true);
+      appDB
+        .collection("contacts")
+        .add({
+          ...f,
+          language: languageState.language
+        })
+        .then(() => {
+          setSubmited(true);
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+    },
+    [languageState]
+  );
 
   const { state, disable, errors, handleOnChange, handleOnSubmit } = useForm<
     FormState
