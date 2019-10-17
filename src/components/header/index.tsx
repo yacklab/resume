@@ -13,6 +13,7 @@ import { useThemeValue, THEME_NAMES } from "../../providers/theme";
 import { useStyle } from "../../hooks";
 import CloudDownload from "@material-ui/icons/CloudDownload";
 import { appStorage } from "../../firebase";
+import { useLanguageValue } from "../../providers/language";
 
 const Container = styled.div<{ theme: Theme }>`
   width: 100%;
@@ -44,15 +45,16 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
   const { themeState } = useThemeValue();
   const classes = useStyle();
   const [resumeUrl, setResumeUrl] = useState();
+  const { languageState } = useLanguageValue();
 
   useEffect(() => {
     appStorage
-      .ref("/public/resume.pdf")
+      .ref(t("PATHS.RESUME"))
       .getDownloadURL()
       .then(function(url) {
         setResumeUrl(url);
       });
-  }, [resumeUrl]);
+  }, [t, languageState]);
 
   return (
     <Container>
@@ -96,6 +98,7 @@ const Header: React.FunctionComponent<RouteComponentProps<any>> = ({
             className={classes.headerLinks}
             underline="hover"
             href={resumeUrl}
+            target="_blank"
           >
             <CloudDownload
               fontSize="small"

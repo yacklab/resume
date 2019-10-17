@@ -1,5 +1,8 @@
 export default {
   translation: {
+    PATHS: {
+      RESUME: "/public/resume_fr.pdf"
+    },
     ERRORS: {
       UNKNOWN: "Une erreur s'est produite",
       FILE_TYPE: "Type de fichier non authorisé",
