@@ -27,7 +27,7 @@ export default {
         TITLE: "Introduction",
         SUBTITLE:
           "I'm a Full Stack Web Developper Full Stack (among other things)",
-        BODY: `My name is Morgan, I almost became a lawyer but in the last 5 years I'm hacking Javascript, mostly in front end but I also like to write backend code (API / lambdas) and tools (scrapper / Micro services). I learned programming in production founding Bowkr (recruitment platform). During that time, I built products, raised money, hired, dismissed people, manage teams, manage projects.
+        BODY: `My name is Morgan, I almost became a lawyer but for the last 5 years I'm hacking Javascript, mostly in front end but I also like to write backend code (API / lambdas) and tools (scrapper / Micro services). I learned programming in production founding Bowkr (recruitment platform). During that time, I built products, raised money, hired, dismissed people, manage teams, manage projects.
         Most importantly I found what I love to do. I love to learn, I love to brainstorm, I love building products, I love solving things alone and within a team. I love to watch products grow.
         `,
         DETAILS_TITLE: "Details",

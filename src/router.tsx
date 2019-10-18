@@ -2,13 +2,14 @@ import React from "react";
 import { BrowserRouter, Route, Switch, useLocation } from "react-router-dom";
 // import { useLocation } from "react-router";
 import { Header } from "./components";
-import { ProjectsView, HomeView } from "./views";
+import { ProjectsView, HomeView, LocoView } from "./views";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 
 export const RouterPaths = {
   projects: "/projects",
   resume: "/resume",
+  loco: "/loco2",
   home: "/"
 };
 
@@ -57,6 +58,7 @@ const SwitchRoutes = () => {
           <Switch location={location}>
             <Route path={RouterPaths.projects} component={ProjectsView} />
             <Route path={RouterPaths.resume} component={ProjectsView} />
+            <Route path={RouterPaths.loco} component={LocoView} />
             <Route path={RouterPaths.home} component={HomeView} />
           </Switch>
         </CSSTransition>

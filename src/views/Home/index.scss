@@ -4,8 +4,9 @@
   background: radial-gradient(ellipse at bottom, #09203f, #537895);
   background-size: 400% 400%;
   animation: movingBG 10s linear infinite alternate;
+  will-change: background-position;
 }
-
+// TODO: use transform;
 @keyframes movingBG {
   0% {
     background-position: 50% 0%;
