@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Typography, Link } from "@material-ui/core";
+import debounce from "lodash/debounce";
 
 const Container = styled.div`
-  margin-top: 64px;
   height: calc(100vh - 40px);
   width: 100%;
   margin: auto;
   position: relative;
   background: #280744;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   @keyframes translateX {
     0% {
       background-position: 0px 0px;
@@ -28,6 +31,19 @@ const Container = styled.div`
         0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
     }
   }
+`;
+
+interface WrapperProps {
+  scale: number;
+}
+
+const Wrapper = styled.div<WrapperProps>`
+  max-width: 1920px;
+  max-height: 1080px;
+  position: relative;
+  background: #280744;
+  overflow: hidden;
+  transform: scale(${p => p.scale});
 `;
 
 const Background = styled.div`
@@ -140,23 +156,40 @@ const CreditContainer = styled(Link)`
 `;
 
 const TrainSection = () => {
+  const [scale, setScale] = useState(Math.ceil(window.innerWidth / 1920));
+  const handleResize = debounce(
+    () => {
+      console.log("resizing");
+      setScale(Math.ceil(window.innerWidth / 1920));
+    },
+    200,
+    { leading: true, trailing: true }
+  );
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  });
   return (
     <Container>
-      <Background />
-      <Rocks1 />
-      <Rocks2 />
-      <Rails />
-      <Train />
-      <Ground />
-      <Light />
-      <Moon />
-      <Text variant="h1">Hello LOCO2</Text>
-      <CreditContainer
-        target="_blank"
-        href="https://codepen.io/ahmmu15/pen/jVELGQ"
-      >
-        credits
-      </CreditContainer>
+      <Wrapper scale={scale}>
+        <Background />
+        <Rocks1 />
+        <Rocks2 />
+        <Rails />
+        <Train />
+        <Ground />
+        <Light />
+        <Moon />
+        <Text variant="h1">Hello LOCO2</Text>
+        <CreditContainer
+          target="_blank"
+          href="https://codepen.io/ahmmu15/pen/jVELGQ"
+        >
+          credits
+        </CreditContainer>
+      </Wrapper>
     </Container>
   );
 };
